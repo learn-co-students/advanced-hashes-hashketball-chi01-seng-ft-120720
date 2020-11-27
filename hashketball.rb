@@ -195,19 +195,20 @@ end
 
 def player_stats(player)
   game_hash
-  game_hash[:home][:players].each do |stats|
-    if stats[:player_name] == player
+
+
+  game_hash.each do |home_or_away, team_hash|
+    team_hash[:players].each do |stats|
+      if stats[:player_name] == player
       return stats
+      end
     end 
   end
-  
-  game_hash[:away][:players].each do |stats|
-    if stats[:player_name] == player
-      return stats
-    end 
-  end
-  
-end
+ 
+end 
+
+
+
 
 def big_shoe_rebounds
 game_hash
@@ -248,3 +249,47 @@ game_hash
 
   biggest_rebounds
 end
+
+
+
+def most_points_scored
+game_hash
+
+  most_points_scored = nil  
+  player_name = nil
+ 
+ game_hash[:home][:players].each do |stats|
+
+    if most_points_scored == nil
+        most_points_scored = stats[:points]
+        player_name = stats[:player_name]
+        
+      else
+        if most_points_scored < stats[:points]
+         most_points_scored = stats[:points]
+         player_name = stats[:player_name]          
+        end 
+    end 
+  end 
+ 
+  game_hash[:away][:players].each do |stats|
+
+    if most_points_scored == nil
+        most_points_scored = stats[:points]
+        player_name = stats[:player_name]
+        
+      else
+        if most_points_scored < stats[:points]
+         most_points_scored = stats[:points]
+         player_name = stats[:player_name]          
+        end 
+    end 
+  end 
+ 
+ player_name 
+end
+
+
+def winning_team
+  
+end 
