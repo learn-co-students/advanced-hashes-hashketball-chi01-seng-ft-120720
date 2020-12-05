@@ -1,4 +1,4 @@
-# Write your code below game_hash
+require 'pry' 
 def game_hash
   {
     home: {
@@ -126,4 +126,202 @@ def game_hash
   }
 end
 
-# Write code here
+def num_points_scored (player_name)
+
+final = 0
+players_array = []
+score = 0
+id_array =[]
+ game_hash.map{|field, team|
+    team.map {|team, players|
+    if team = players
+      id_array << players
+    end
+    }
+  }
+    
+  players_array << id_array[2]
+  players_array << id_array[5]
+  
+
+  players_array.map {|players_id|
+    players_id.map{|inner_player|
+      inner_player.map{|id, value|
+        if value == player_name
+          return inner_player[:points]
+        end
+      }
+    }
+  }
+  
+end
+
+def shoe_size (player_name)
+
+final = 0
+players_array = []
+score = 0
+id_array =[]
+ game_hash.map{|field, team|
+    team.map {|team, players|
+    if team = players
+      id_array << players
+    end
+    }
+  }
+    
+  players_array << id_array[2]
+  players_array << id_array[5]
+  
+
+  players_array.map {|players_id|
+    players_id.map{|inner_player|
+      inner_player.map{|id, value|
+        if value == player_name
+          return inner_player[:shoe]
+        end
+      }
+    }
+  }
+  
+end
+
+def team_colors (string)
+
+players_array = []
+score = 0
+id_array =[]
+ game_hash.map {|field, team|
+    team.map {|team, players|
+    if team = players
+      id_array << players
+    end
+    
+    }
+  }
+  if id_array[0] == string
+      p id_array [1]
+    elsif id_array[3] == string
+    p id_array[4]
+  end
+    
+  
+end
+
+def team_names 
+
+id_array =[]
+ game_hash.map {|field, team|
+    team.map {|team, players|
+    if team = players
+      id_array << players
+    end
+    
+    }
+  }
+ return "#{id_array[0]}", "#{id_array[3]}"
+ 
+ end
+ 
+ def player_numbers(team_names)
+   
+  final_array = []
+players_array = []
+id_array =[]
+ game_hash.map{|field, team|
+    team.map {|team, players|
+    if team = players
+      id_array << players
+    end
+    }
+  }
+  
+  if team_names == id_array[0]
+  players_array << id_array[2]
+  elsif team_names == id_array[3]
+  players_array << id_array[5]
+  end
+  
+  players_array.map {|players_id|
+    players_id.map{|inner_player|
+      inner_player.map{|id, value|
+     final_array << inner_player[:number]
+      }
+    }
+  }
+  return final_array.uniq
+end
+
+def player_stats(player_name)
+  
+  final_array = []
+players_array = []
+score = 0
+id_array =[]
+ game_hash.map{|field, team|
+    team.map {|team, players|
+    if team = players
+      id_array << players
+    end
+    }
+  }
+    
+  players_array << id_array[2]
+  players_array << id_array[5]
+  
+
+  players_array.map {|players_id|
+    players_id.map{|inner_player|
+      inner_player.map{|id, value|
+        if value == player_name
+         return inner_player
+        end
+      }
+    }
+  }
+end
+
+def big_shoe_rebounds
+  
+  shoe_array = []
+shoe_final = []
+players_array = []
+biggest_shoe = 0
+id_array =[]
+big_rebounds =[]
+
+ game_hash.map{|field, team|
+    team.map {|team, players|
+    if team = players
+      id_array << players
+    end
+    }
+  }
+    
+  players_array << id_array[2]
+  players_array << id_array[5]
+  
+
+  players_array.map {|players_id|
+    players_id.map{|inner_player|
+      inner_player.map{|id, value|
+      shoe_array << inner_player[:shoe]
+      }
+    }
+  }
+  shoe_final = shoe_array.uniq
+  biggest_shoe = shoe_final.max
+  
+  players_array.map {|players_id|
+    players_id.map{|inner_player|
+      inner_player.map{|id, value|
+        if inner_player[:shoe] == biggest_shoe
+        big_rebounds << inner_player[:rebounds]
+        end
+      }
+    }
+  }
+  
+ return big_rebounds [0]
+  
+end
