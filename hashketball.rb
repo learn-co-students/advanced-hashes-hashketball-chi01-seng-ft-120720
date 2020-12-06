@@ -1,4 +1,6 @@
 # Write your code below game_hash
+require 'pry'
+
 def game_hash
   {
     home: {
@@ -127,3 +129,110 @@ def game_hash
 end
 
 # Write code here
+
+def num_points_scored(player)
+  game_hash.each do |key, element|
+    element[:players].each do |key2, element2|
+      if key2[:player_name].include? "#{player}"
+        return key2[:points]
+      end
+      #binding.pry
+    end
+  end
+  return "Player not found."
+end
+
+def shoe_size(player)
+  game_hash.each do |key, element|
+    element[:players].each do |key2, element2|
+      if key2[:player_name].include? "#{player}"
+        return key2[:shoe]
+      end
+      #binding.pry
+    end
+  end
+  return "Player not found."
+end
+
+def team_colors(team)
+  game_hash.each do |key, element|
+    if element[:team_name].include? "#{team}"
+      return element[:colors]
+    end
+  end
+  return "Team not found."
+end
+
+def team_names
+  team_array = []
+  #binding.pry
+  team_array << game_hash[:home][:team_name]
+  team_array << game_hash[:away][:team_name]
+  return team_array
+end
+
+def player_numbers(team)
+  jersey_numbers = []
+  
+  game_hash.each do |key, element|
+    if element[:team_name].include? "#{team}"
+      element[:players].each do |key2, element2|
+        jersey_numbers << key2[:number]
+      end
+      return jersey_numbers
+    end
+  end
+  return "Team not found."
+end
+
+def player_stats(player)
+  game_hash.each do |key, element|
+    element[:players].each do |key2, element2|
+      if key2[:player_name].include? "#{player}"
+        player_index = element[:players].index {|h| h[:player_name] == "#{player}" }
+        return element[:players][player_index]
+      end
+    end
+  end
+  return "Player not found."
+end
+
+def big_shoe_rebounds
+  largest_shoe_size = 0
+  largest_shoe_size_rebounds = 0
+  
+  game_hash.each do |key, element|
+    element[:players].each do |key2, element2|
+      if key2[:shoe] > largest_shoe_size
+        largest_shoe_size = key2[:shoe]
+        largest_shoe_size_rebounds = key2[:rebounds]
+      end
+    end
+    return largest_shoe_size_rebounds
+  end
+end
+
+
+#hashketball swoosh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
